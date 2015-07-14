@@ -13,7 +13,8 @@ export GEOMETRY="$SCREEN_WIDTH""x""$SCREEN_HEIGHT""x""$SCREEN_DEPTH"
 #}
 
 nohup /usr/sbin/sshd -D &
-x11vnc -display :20 -forever -usepw -create &
+/usr/bin/Xvfb :20 -screen 0 1280x1024x24 -cc 4 -nolisten tcp -ac &
+x11vnc -display :20 -forever -usepw &
 # We just need the desktop. no need selenium.
 #xvfb-run --server-args="$DISPLAY -screen 0 $GEOMETRY -ac +extension RANDR"  \
 #   tail -f /dev/null &
