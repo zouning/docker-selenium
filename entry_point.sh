@@ -1,9 +1,9 @@
 #!/bin/bash
-/tmp/splunk/bin/splunk edit user admin -password changed --accept-license --answer-yes --no-prompt -auth admin:changeme
+#/tmp/splunk/bin/splunk edit user admin -password changed --accept-license --answer-yes --no-prompt -auth admin:changeme
 /tmp/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
 export SPLUNK_HOME=/tmp/splunk
 $SPLUNK_HOME/bin/splunk start &
-touch $SPLUNK_HOME/etc/.ui_login
+#touch $SPLUNK_HOME/etc/.ui_login
 
 export GEOMETRY="$SCREEN_WIDTH""x""$SCREEN_HEIGHT""x""$SCREEN_DEPTH"
 
@@ -13,8 +13,9 @@ export GEOMETRY="$SCREEN_WIDTH""x""$SCREEN_HEIGHT""x""$SCREEN_DEPTH"
 #}
 
 nohup /usr/sbin/sshd -D &
-/usr/bin/Xvfb :20 -screen 0 1280x1024x24 -cc 4 -nolisten tcp -ac &
-x11vnc -display :20 -forever -usepw &
+nohup /usr/bin/Xvfb :20 -screen 0 1280x1024x24 -cc 4 -nolisten tcp -ac &
+nohup x11vnc -display :20 -forever -usepw &
+
 # We just need the desktop. no need selenium.
 #xvfb-run --server-args="$DISPLAY -screen 0 $GEOMETRY -ac +extension RANDR"  \
 #   tail -f /dev/null &
